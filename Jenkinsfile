@@ -1,10 +1,12 @@
 node {
    stage('SCM Checkout') {
+ 
        git 'https://github.com/bierbios/maven1.git'
        
    }
    
    stage('compile-package'){
-       sh 'mvn package'
+       def home_maven = tool name: 'maven1', type: 'maven'
+      sh "${home_maven}/bin/mvn package"
    }
 }
